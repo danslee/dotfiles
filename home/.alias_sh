@@ -1,0 +1,204 @@
+# aliases should be in sections by function and then in alphabetical order
+#
+########################################
+# basic shell aliases
+########################################
+alias d='dirs'
+function FN()
+{
+   find . -iname "*${1}*" -type f -print
+}
+
+function FD()
+{
+   find . -iname "*${1}*" -type d -print
+}
+
+function poked()
+{
+   pwd !> ~/tmp/dir_reg
+}
+function peekd()
+{
+   dir_reg=`cat ~/tmp/dir_reg`
+   if [ -d  "$dir_reg" ] ; then
+      cd "$dir_reg"
+   else
+      echo "bad val! $dir_reg"
+   fi
+}
+function cdw()
+{
+    cd $(cat $HOME/var/work/current_dir.txt | head -1);
+}
+function pokew()
+{
+    pwd > $HOME/var/work/current_dir.txt
+}
+function peekw()
+{
+    cat $HOME/var/work/current_dir.txt
+}
+function pdw()
+{
+    pushd $(cat $HOME/var/work/current_dir.txt | head -1);
+}
+
+alias flash='open -a "Flash Player"'
+alias igrep='grep -i'
+alias l='ls'
+alias la='ls -a'
+alias ll='ls -l'
+alias lla='ls -al'
+alias llc='ls -lart'
+alias llt='ls -lt'
+if ls -T4 > /dev/null 2>&1; then
+	alias ls='ls -T0 -F'
+else
+	alias ls='ls -F'
+fi
+if ls -sh > /dev/null 2>&1; then
+	alias lss='ls -sh'
+else
+	alias lss='ls -s'
+fi
+alias lt='ls -t'
+alias mroe='more'
+alias pd='pushd'
+alias pd2='pushd +2'
+alias pd22='pd2; pd2'
+alias po='popd'
+alias pdo='pd; po'
+alias rmb='rm -f *~'
+alias sl='ls'
+alias t='todo.py'
+if [ -x /opt/local/bin/vim ] ; then
+   alias vim='/opt/local/bin/vim'
+fi
+if [ -x /Applications/Vim.app/Contents/MacOS/Vim ] ; then
+   alias vim='/Applications/Vim.app/Contents/MacOS/Vim'
+fi
+alias which='type -p'
+alias units=$HOME/bin/units
+
+########################################
+# printing
+########################################
+if type -p enscript > /dev/null; then
+    alias ens='enscript -2rGE -T4'
+    alias ensp='enscript -1RGE -T4'
+    alias ensw='enscript -1rGE -T4 --font="Courier7"'
+fi
+
+########################################
+# misc
+########################################
+alias backup_pilot="pilot-xfer --backup ~/Munin"
+
+#FIND aliases.
+#if [ -f ~/bin/FIND_aliases.sh ]; then
+#	. ~/bin/FIND_aliases.sh
+#fi
+
+#hack to add pd aliases for cd aliases
+alias | grep "alias cd" | grep "'cd " | sed -e "s/alias cd/alias pd/" -e "s/'cd/'pd/" > /tmp/${USER}_alias_sh.$$
+. /tmp/${USER}_alias_sh.$$
+rm -f /tmp/${USER}_alias_sh.$$
+
+########################################
+# defunct aliases
+########################################
+#alias cardeject='/sbin/cardctl eject'
+#alias cardinsert='/sbin/cardctl insert'
+#alias sunbash='/mnt/char2/private/lee/SunOS/bin/bash'
+#alias telnet='ssh'
+#if type -p vim > /dev/null; then
+#	alias vi='vim';
+#fi
+
+#entelos aliases
+
+#oracle stuff
+if [ -n "" ]; then
+	if [ -n "$ORACLE_HOME" ]; then
+		alias cdo="cd $ORACLE_HOME";
+	fi
+	if [ `hostname` = "storybook" ]; then
+		alias SID2ATS='export ORACLE_SID=ATS';
+		alias SID2test='export ORACLE_SID=test';
+	elif  [ `hostname` = "praeger" ]; then
+		export ORACLE_SID=JNS
+		#alias SID2JNS='export ORACLE_SID=JNS'
+	fi
+
+	if [ -z "$PHYSIOLAB_HOME" ]; then
+		PHYSIOLAB_HOME=$HOME/work/p4serendipity/PhysioLab;
+		export PHYSIOLAB_HOME
+	fi
+fi  #oracle stuff
+
+#cdproject
+#alias cdAC='cd /mnt/char2/private/lee/work/p4admin/ComputeServer'
+#alias cdAP='cd /mnt/char2/private/lee/work/p4admin/PhysioLab'
+#alias cdA3='cd /mnt/char2/private/lee/work/p4admin/3rdParty'
+#alias cdBU='cd $PHYSIOLAB_HOME/Build/Unix'
+#alias cdCOM='cd $PHYSIOLAB_HOME/../ComputeServer/Common'
+#alias cdH='cd /entelos_old/common/WL/hives'
+#alias cdLBC='cd $PHYSIOLAB_HOME/LabBuilderCore'
+#alias cdLBCS='cd $PHYSIOLAB_HOME/LabBuilderCore/Source'
+#alias cdP='cd $PHYSIOLAB_HOME/../ComputeServer/Testing/profile'
+#alias cdQ='cd $PHYSIOLAB_HOME/../ComputeServer/MainServer/Queen'
+#alias cdSB='cd $PHYSIOLAB_HOME/../SandBox'
+#alias cdSC='cd $PHYSIOLAB_HOME/SimCore'
+#alias cdSCS='cd $PHYSIOLAB_HOME/SimCore/Source'
+#alias cdVAL='cd $PHYSIOLAB_HOME/../ComputeServer/Validation'
+#alias cdWA='cd $PHYSIOLAB_HOME/../WebStation'
+#alias cdWB='cd $PHYSIOLAB_HOME/../ComputeServer/WorkerBee'
+#alias cdW32='cd $PHYSIOLAB_HOME/LabBuilder/Source/Win32'
+#if [ -d "/entelos_old/common/WL/daily_builds/src" ]; then
+#	alias cdDB='cd /entelos_old/common/WL/daily_builds/src'
+#fi
+
+#development aliases
+
+#if [ -r ~/bin/set_GO_DEBUG ]; then
+	#alias GO_DEBUG='. ~/bin/set_GO_DEBUG'
+#fi
+#if [ -r ~/bin/set_GO_PROFILE ]; then
+	#alias GO_PROFILE='. ~/bin/set_GO_PROFILE'
+#fi
+#if [ -r ~/bin/set_GO_RELEASE ]; then
+	#alias GO_RELEASE='. ~/bin/set_GO_RELEASE'
+#fi
+
+#for i in ~/bin/set_GO_*; do
+#	j=`basename $i`
+#	k=`echo $j | cut -f 3- -d _`
+#	alias GO_$k=". $i"
+#	iden=`grep export $i | cut -f 1 -d = | cut -f 2 -d ' '`
+#	alias STOP_$k="unset $iden"
+#done
+
+#if [ -r ~/bin/set_PHYSIOLAB_HOME ]; then
+#	alias PHYSIOLAB_HOME='. ~/bin/set_PHYSIOLAB_HOME'
+#fi
+#if [ -r ~/bin/set_LB_TARGET ]; then
+#	alias GO_BUILDER='. ~/bin/set_LB_TARGET BUILDER'
+#	alias GO_STATION='. ~/bin/set_LB_TARGET STATION'
+#fi
+#
+#for i in ~/bin/set_PROJ_*; do
+#	j=`basename $i`
+#	k=`echo $i | cut -f 3 -d _`
+#	alias GO_$k=". $i"
+#done
+
+#alias reload_prompt='export PS1="\[\033]0;\u@\h: \w\007\033[7m\][\u@\h \W]\[\033[m\] "'
+	#PS1="\[\033[7m\][\u@\h \W]\[\033[m\] "
+
+#specialized aliases for contacting stanford
+#if type -p ssh1 > /dev/null; then
+#    #alias elaine5="ssh1 -C -l dslee elaine5.stanford.edu"
+#    alias elaine='ssh1 -C -l dslee `exec finger @elaine.stanford.edu | head -1 | sed -e "s/\[//g" -e "s/\]//g"`'
+#    alias myth='ssh1 -C -l dslee `exec finger @myth.stanford.edu | head -1 | sed -e "s/\[//g" -e "s/\]//g"`'
+#fi

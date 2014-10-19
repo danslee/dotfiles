@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/Users/dlee/Downloads/pysvn 2'
+let g:netrw_dirhist_2='/Users/dlee/Library/Internet Plug-Ins'
+let g:netrw_dirhist_3='/Users/dlee/Library'
+let g:netrw_dirhist_4='/Users/dlee/tmp/a'
+let g:netrw_dirhist_5='/Users/dlee/Dropbox/danslee-home'
+let g:netrw_dirhist_6='/Users/dlee/tmp/a'
+let g:netrw_dirhist_7='/Users/dlee/Documents/culture/literature/ebooks/Gaiman, Neil/coraline/META-INF'
+let g:netrw_dirhist_8='/Users/dlee/bin'
