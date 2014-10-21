@@ -108,4 +108,4 @@ for i in ${HOME}/.*[_-]sh ; do
 done
 
 # homeshick!
-git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
+. $HOME/.homesick/repos/homeshick/bin/homeshick.sh
