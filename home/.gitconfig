@@ -1,0 +1,11 @@
+[user]
+	name = Daniel S. Lee
+	email = danslee@yahoo.com
+[credential]
+	helper = osxkeychain
+[filter "media"]
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
+[core]
+	excludesfile = /Users/dlee/.gitignore_global
