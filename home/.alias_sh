@@ -31,6 +31,12 @@ function cdw()
 {
     cd $(cat $HOME/var/work/current_dir.txt | head -1);
 }
+function pbtmux()
+{
+    if test -n "`tmux showb 2> /dev/null`"; then
+        tmux saveb -| pbcopy
+    fi
+}
 function pokew()
 {
     pwd > $HOME/var/work/current_dir.txt
