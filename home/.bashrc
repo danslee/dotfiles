@@ -6,7 +6,7 @@ fi
 
 #don't logout on ctrl-d. DOH!
 export IGNOREEOF=3
-export LESS="-X -z-3"
+#export LESS="-X -z-3"
 
 if [ -n "`which bash | grep -v ' not '`" ]; then
 	export SHELL=`type -p bash`;
