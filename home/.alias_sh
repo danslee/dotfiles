@@ -76,6 +76,12 @@ alias pd22='pd2; pd2'
 alias po='popd'
 alias pdo='pd; po'
 alias rmb='rm -f *~'
+
+# shortcut for reattaching to namespace if not attached
+# $SHELL gets expanded at alias evaluation time.
+if uname | grep -q Darwin && command -v reattach-to-user-namespace > /dev/null 2>&1 ; then
+  alias retach="exec reattach-to-user-namespace -l $SHELL"
+fi
 alias sl='ls'
 alias t='todo.py'
 if [ -x /opt/local/bin/vim ] ; then

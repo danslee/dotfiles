@@ -82,7 +82,10 @@ export BGCOL='dark'
 #export PYTHONPATH=${HOME}/lib/python:${HOME}/lib/DIP_py
 reset
 
-#history
+if uname | grep -q Darwin ;
+  export JAVA_HOME=$(/usr/libexec/java_home)
+fi
+
 export HISTCONTROL=erasedups
 export HISTSIZE=10000
 shopt -s histappend
