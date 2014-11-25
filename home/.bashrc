@@ -82,7 +82,7 @@ export BGCOL='dark'
 #export PYTHONPATH=${HOME}/lib/python:${HOME}/lib/DIP_py
 reset
 
-if uname | grep -q Darwin ;
+if uname | grep -q Darwin ; then
   export JAVA_HOME=$(/usr/libexec/java_home)
 fi
 
