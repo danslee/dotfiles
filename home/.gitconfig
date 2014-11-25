@@ -9,3 +9,5 @@
 	smudge = git media smudge %f
 [core]
 	excludesfile = /Users/dlee/.gitignore_global
+[push]
+	default = simple
