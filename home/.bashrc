@@ -80,7 +80,7 @@ export BGCOL='dark'
 #stty oxtabs #expand tabs to spaces on output
 #export LC_CTYPE=en_US.UTF-8
 #export PYTHONPATH=${HOME}/lib/python:${HOME}/lib/DIP_py
-reset
+reset -I
 
 if uname | grep -q Darwin ; then
   export JAVA_HOME=$(/usr/libexec/java_home)
