@@ -34,7 +34,7 @@ esac
 
 unset VISUAL
 if ( type tabs > /dev/null 2>&1 ); then
-	tabs -4
+	tabs -4 2> /dev/null
 fi
 
 
@@ -80,7 +80,7 @@ export BGCOL='dark'
 #stty oxtabs #expand tabs to spaces on output
 #export LC_CTYPE=en_US.UTF-8
 #export PYTHONPATH=${HOME}/lib/python:${HOME}/lib/DIP_py
-reset -I
+reset -I &> /dev/null
 
 if uname | grep -q Darwin ; then
   export JAVA_HOME=$(/usr/libexec/java_home)
@@ -92,10 +92,10 @@ shopt -s histappend
 
 #tmux helpers
 # disable flow control and reclaim ^S ^Q
-stty -ixon -ixoff
+stty -ixon -ixoff 2> /dev/null
 stty stop undef 2> /dev/null
 stty start undef 2> /dev/null
-bind -r "\C-s"
+bind -r "\C-s" 2> /dev/null
 
 # Load up other .sh files
 # Doing find | while read instead of the for loop doesn't work because the pipe
