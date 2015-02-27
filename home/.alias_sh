@@ -118,6 +118,59 @@ alias | grep "alias cd" | grep "'cd " | sed -e "s/alias cd/alias pd/" -e "s/'cd/
 rm -f /tmp/${USER}_alias_sh.$$
 
 ########################################
+# ssh-auth-sock setup stuff
+########################################
+
+# find the most recently created auth-sock under /tmp
+function latest-auth-sock()
+{
+  #find current SSH_AUTH_SOCK under /tmp
+  \ls -1t $(find /tmp -name "agent*" -type s -print) | head -1
+}
+
+
+# link default to point to passed in socket
+function set-auth-sock-link()
+{
+  sock_link=$HOME/var/auth-sock
+  working_auth_sock=$1
+  if [ ! -S $working_auth_sock ]; then
+    echo 'not a socket!'
+    return 1
+  fi
+  rm -f $HOME/var/auth-sock
+  ln -s "$working_auth_sock" $sock_link
+  export SSH_AUTH_SOCK=$sock_link
+}
+
+# If we're already linked and active socket
+#   we're good, exit 0
+# Read parameter if passed in
+# If SSH_AUTH_SOCK is socket but not base link
+#   point base link at socket, point SSH_AUTH_SOCK at link
+#   exit 0
+# Find latest authsock under /tmp
+#   point base link at socket, point SSH_AUTH_SOCK at link
+function ssh-auth-sock-setup()
+{
+  sock_link=$HOME/var/auth-sock
+  if [ $SSH_AUTH_SOCK = $HOME/var/auth-sock ]; then
+    if [ -S "$sock_link" ]; then
+      return 0
+    fi
+  fi
+  if [ "z" != "z$1" ]; then
+    SSH_AUTH_SOCK="$1"
+  fi
+  if [ $SSH_AUTH_SOCK != $sock_link ]; then
+    set-auth-sock-link $SSH_AUTH_SOCK && return 0
+  fi
+  set-auth-sock-link $(latest-auth-sock) && return 0
+  return 1
+}
+
+
+########################################
 # defunct aliases
 ########################################
 #alias cardeject='/sbin/cardctl eject'
