@@ -80,7 +80,6 @@ export BGCOL='dark'
 #stty oxtabs #expand tabs to spaces on output
 #export LC_CTYPE=en_US.UTF-8
 #export PYTHONPATH=${HOME}/lib/python:${HOME}/lib/DIP_py
-reset -I &> /dev/null
 
 if uname | grep -q Darwin ; then
   export JAVA_HOME=$(/usr/libexec/java_home)
@@ -92,7 +91,7 @@ shopt -s histappend
 
 #tmux helpers
 # disable flow control and reclaim ^S ^Q
-stty -ixon -ixoff 2> /dev/null
+stty -ixon 2> /dev/null
 stty stop undef 2> /dev/null
 stty start undef 2> /dev/null
 bind -r "\C-s" 2> /dev/null
@@ -106,6 +105,7 @@ bind -r "\C-s" 2> /dev/null
 for i in ${HOME}/.*[_-]sh ; do
   . $i
 done
+tput init
 
 # homeshick!
 source $HOME/.homesick/repos/homeshick/homeshick.sh

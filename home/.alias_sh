@@ -153,8 +153,11 @@ function set-auth-sock-link()
 #   point base link at socket, point SSH_AUTH_SOCK at link
 function ssh-auth-sock-setup()
 {
+  if [ "z$SSH_AUTH_SOCK" == "z" ]; then
+    echo "No SSH_AUTH_SOCK around!"
+  fi
   sock_link=$HOME/var/auth-sock
-  if [ $SSH_AUTH_SOCK = $HOME/var/auth-sock ]; then
+  if [ "$SSH_AUTH_SOCK" = "$HOME/var/auth-sock" ]; then
     if [ -S "$sock_link" ]; then
       return 0
     fi
@@ -162,7 +165,7 @@ function ssh-auth-sock-setup()
   if [ "z" != "z$1" ]; then
     SSH_AUTH_SOCK="$1"
   fi
-  if [ $SSH_AUTH_SOCK != $sock_link ]; then
+  if [ "$SSH_AUTH_SOCK" != "$sock_link" ]; then
     set-auth-sock-link $SSH_AUTH_SOCK && return 0
   fi
   set-auth-sock-link $(latest-auth-sock) && return 0
