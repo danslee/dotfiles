@@ -13,3 +13,14 @@ Setup
     source "$HOME/.homesick/repos/homeshick/homeshick.sh"
     $HOME/.homesick/repos/homeshick/bin/homeshick clone danslee/dotfiles
 
+Notes
+----
+
+I use Ctrl-S for tmux control because it is relatively unused and S is for
+Screen.. So far, tmux is working well for me, but I switch to using
+[Byobu](http://byobu.co) if I run into things I really want that don't exist in
+tmux right now. But for now, it would be just another layer to update and keep
+updated so I'm sticking to tmux for now.
+
+
+
