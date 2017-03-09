@@ -77,6 +77,18 @@ alias po='popd'
 alias pdo='pd; po'
 alias rmb='rm -f *~'
 
+# time printing shortcuts
+alias ct='date "+%Y%m%d %H%M%S"'
+alias ctt='date "+%Y%m%dT%H%M%S"'
+alias ctl='date "+%Y-%m-%d %H:%M:%S"'
+alias ctlo='date "+%Y-%m-%d %H:%M:%S%z"'
+alias ut='date -u "+%Y%m%d %H%M%S"'
+alias utt='date -u "+%Y%m%dT%H%M%S"'
+alias utl='date -u "+%Y-%m-%d %H:%M:%S"'
+alias utlz='date -u "+%Y-%m-%d %H:%M:%SZ"'
+alias utz='date -u "+%Y%m%d %H%M%SZ"'
+alias utzt='date -u "+%Y%m%dT%H%M%SZ"'
+
 # shortcut for reattaching to namespace if not attached
 # $SHELL gets expanded at alias evaluation time.
 if uname | grep -q Darwin && command -v reattach-to-user-namespace > /dev/null 2>&1 ; then
