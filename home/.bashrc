@@ -69,6 +69,9 @@ function add_back()
 add_front /usr/local/sbin
 add_front /usr/local/bin
 add_front ${HOME}/bin
+if [ -d /usr/local/mysql ] ; then
+  add_back /usr/local/mysql/bin
+fi
 
 export MANPATH="/opt/local/share/man:${MANPATH}"
 
@@ -109,3 +112,5 @@ tput init
 
 # homeshick!
 source $HOME/.homesick/repos/homeshick/homeshick.sh
+
+eval "$(pyenv init -)"

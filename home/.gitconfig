@@ -9,5 +9,6 @@
 	smudge = git media smudge %f
 [core]
 	excludesfile = /Users/dlee/.gitignore_global
+	editor = vim
 [push]
 	default = simple

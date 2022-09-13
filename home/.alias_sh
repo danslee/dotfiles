@@ -76,6 +76,8 @@ alias pd22='pd2; pd2'
 alias po='popd'
 alias pdo='pd; po'
 alias rmb='rm -f *~'
+alias ytdl='yt-dlp --recode-video=mp4 --no-mtime --embed-subs --embed-thumbnail --add-metadata'
+alias ytsl='yt-dlp -x --audio-format=mp3'
 
 # time printing shortcuts
 alias ct='date "+%Y%m%d %H%M%S"'
