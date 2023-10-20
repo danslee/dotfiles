@@ -55,21 +55,27 @@ function remove_dir()
 
 function add_front()
 {
-  remove_dir "$1"
-  export PATH="$1:$PATH"
+  if [ -d "$1" ]; then
+    remove_dir "$1"
+    export PATH="$1:$PATH"
+  fi
 }
 
 function add_back()
 {
-  remove_dir "$1"
-  export PATH="$PATH:$1"
+  if [ -d "$1" ]; then
+    remove_dir "$1"
+    export PATH="$PATH:$1"
+  fi
 }
 
 # brew modification
 add_front /usr/local/sbin
 add_front /usr/local/bin
 add_front ${HOME}/bin
+add_front /opt/homebrew/bin
 add_front "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
 if [ -d /usr/local/mysql ] ; then
   add_back /usr/local/mysql/bin
 fi
