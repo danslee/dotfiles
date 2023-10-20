@@ -40,7 +40,7 @@ nnoremap <Tab>   >>
 nnoremap <S-Tab> <<
 vnoremap <Tab>   >><Esc>gv
 vnoremap <S-Tab> <<<Esc>gv
-inoremap <Tab>   <Esc>>>A
+"inoremap <Tab>   <Esc>>>A
 inoremap <S-Tab> <Esc><<A
 
 "run q mapped macros simply

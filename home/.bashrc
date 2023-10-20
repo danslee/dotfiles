@@ -55,13 +55,13 @@ function remove_dir()
 
 function add_front()
 {
-  remove_dir $1
+  remove_dir "$1"
   export PATH="$1:$PATH"
 }
 
 function add_back()
 {
-  remove_dir $1
+  remove_dir "$1"
   export PATH="$PATH:$1"
 }
 
@@ -69,9 +69,14 @@ function add_back()
 add_front /usr/local/sbin
 add_front /usr/local/bin
 add_front ${HOME}/bin
+add_front "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 if [ -d /usr/local/mysql ] ; then
   add_back /usr/local/mysql/bin
 fi
+if [ -d "$HOME/.local/bin" ]; then
+  add_back "$HOME/.local/bin"
+fi
+
 
 export MANPATH="/opt/local/share/man:${MANPATH}"
 
@@ -80,7 +85,7 @@ export ARCHFLAGS="-arch x86_64"
 
 #tty settings
 export BGCOL='dark'
-#stty oxtabs #expand tabs to spaces on output
+stty oxtabs #expand tabs to spaces on output
 #export LC_CTYPE=en_US.UTF-8
 #export PYTHONPATH=${HOME}/lib/python:${HOME}/lib/DIP_py
 
@@ -114,3 +119,16 @@ tput init
 source $HOME/.homesick/repos/homeshick/homeshick.sh
 
 eval "$(pyenv init -)"
+. "$HOME/.cargo/env"
+
+
+# nvm
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+source $(brew --prefix nvm)/nvm.sh
+
+# git autocomplete
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
