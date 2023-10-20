@@ -124,8 +124,8 @@ tput init
 # homeshick!
 source $HOME/.homesick/repos/homeshick/homeshick.sh
 
-eval "$(pyenv init -)"
-. "$HOME/.cargo/env"
+#eval "$(pyenv init -)"
+#. "$HOME/.cargo/env"
 
 
 # nvm
