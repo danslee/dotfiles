@@ -1,0 +1,3 @@
+alias myp="mypy src"
+alias pre="pre-commit run --all-files"
+alias pyt="pytest"
